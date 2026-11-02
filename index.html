@@ -41,7 +41,7 @@ const SUBJECTS=['Fundamentals of Programming','Basic Electronics','Innovation an
 const MAX_FILE_BYTES=10*1024*1024;
 const TEACHER_PASSWORD='teacher@098';
 const STORE_KEY='csDemoV4';
-const SEED_STUDENTS=['Aryan Sonare','Krutika Selokar','Anmol Handa','Fazil Zama Qureshi','Zahid Khan','Anuj Dhadwe','Apurva Nandane','Arnav Pardhi'];
+const SEED_STUDENTS=['Aryan Sonare','Krutika Selokar','Anmol Handa','Fazil Zama Qureshi','Zahid Khan','Anuj Dhadwe','Apurva Nandane'];
 const SEED_TASKS=[
  {id:1,title:'C Programming — Loops & Patterns',subject:0,due:'2026-11-08',description:'Solve the loop-based pattern problems and submit your answers.',createdBy:'Faculty',attachment:null,assignedTo:'all',submissions:{}},
  {id:2,title:'Diode Characteristics',subject:1,due:'2026-11-10',description:'Draw forward and reverse bias characteristics with observations.',createdBy:'Faculty',attachment:null,assignedTo:'all',submissions:{}},
@@ -49,8 +49,8 @@ const SEED_TASKS=[
 ];
 const EYE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
 
-function freshState(){return{seedVersion:2,students:SEED_STUDENTS.map(name=>({name})),tasks:JSON.parse(JSON.stringify(SEED_TASKS)),doubts:[]}}
-function loadState(){try{const s=JSON.parse(localStorage.getItem(STORE_KEY));if(s&&Array.isArray(s.students)&&Array.isArray(s.tasks)&&Array.isArray(s.doubts)){if((s.seedVersion||0)<2){SEED_STUDENTS.forEach(n=>{if(!s.students.some(x=>x.name===n))s.students.push({name:n})});s.seedVersion=2}return s}}catch(e){}return freshState()}
+function freshState(){return{students:SEED_STUDENTS.map(name=>({name})),tasks:JSON.parse(JSON.stringify(SEED_TASKS)),doubts:[]}}
+function loadState(){try{const s=JSON.parse(localStorage.getItem(STORE_KEY));if(s&&Array.isArray(s.students)&&Array.isArray(s.tasks)&&Array.isArray(s.doubts))return s}catch(e){}return freshState()}
 let state=loadState();
 let session={role:'guest',student:''};
 let page='dashboard';
